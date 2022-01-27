@@ -1414,7 +1414,7 @@ object Project0 {
   def possibilities(): Unit = {
     println(
       """
-        |Welcome to the Screen Servant!
+        |Welcome to the SCREEN SERVANT!
         |Enter a number to select a category:
         |1) View my watchlist
         |2) View my watched list

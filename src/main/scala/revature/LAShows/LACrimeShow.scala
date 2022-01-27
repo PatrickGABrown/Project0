@@ -275,7 +275,7 @@ object LACrimeShow {
     println(
       """
         |Would you like to go back?
-        |Or do you want to select a movie?
+        |Or do you want to select a show?
         |1 for GO BACK. 2 for SELECTION MENU.
         |""".stripMargin)
     val back = readInt()
