@@ -1,24 +1,23 @@
-package revature.watchlist
+package revature.watchAgain
 
 import java.sql.DriverManager
 
-object watchList {
-  def createWatchList(): Unit = {
+object watchAgainDB {
+  def createWatchedList(): Unit = {
     val url = "jdbc:mysql://localhost:3306/project0"
     val username = "root"
     val password = "KafeAde!f1a"
     val connection = DriverManager.getConnection(url, username, password)
     val s = connection.createStatement()
     var create: String = ""
-    var query: String = ""
 
-    //create an empty watchList
-    create = "CREATE TABLE watchList(wID int NOT NULL, " +
-      "wTitle varchar(300), addDate date)"
+    //Create the table for titles you've already watched.
+    create = "CREATE TABLE watchAgain(watchedID int NOT NULL, " +
+      "watchedTitle varchar(300), wDate date)"
     s.executeUpdate(create)
   }
 
-  def viewWatchList(): Unit={
+  def viewWatchAgain(): Unit = {
     val url = "jdbc:mysql://localhost:3306/project0"
     val username = "root"
     val password = "KafeAde!f1a"
@@ -26,15 +25,16 @@ object watchList {
     val s = connection.createStatement()
     var query: String = ""
 
-    //query to show the watchList table.
-    query = "SELECT * FROM watchList"
+    //query to show the watchAgain table.
+    query = "SELECT * FROM watchAgain"
     val resultSet = s.executeQuery(query)
-    while (resultSet.next){
-      val wId = resultSet.getInt("wID")
-      val wTitle = resultSet.getString("wTitle")
-      val addDate = resultSet.getString("addDate")
-      println(("wID = %s, Title = %s, Date Added = %s").format(wId, wTitle, addDate))
+    while (resultSet.next) {
+      val watchedId = resultSet.getInt("watchedID")
+      val watchedTitle = resultSet.getString("watchedTitle")
+      val wDate = resultSet.getString("wDate")
+      println(("wID = %s, Title = %s, Date Added = %s").format(watchedId, watchedTitle, wDate))
       //println("You created the watchAgain table.")
     }
   }
+
 }

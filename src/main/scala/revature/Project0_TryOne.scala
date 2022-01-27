@@ -1,6 +1,8 @@
 package revature
 
-//import java.sql.DriverManager
+import revature.watchlist.watchList
+
+import java.sql.DriverManager
 //import java.time.{LocalDate, Year}
 import scala.annotation.tailrec
 import scala.io.StdIn.readInt
@@ -1289,7 +1291,92 @@ object Project0_TryOne {
   }
 
   def watchlistCheck(): Unit = {
-    println("Here is your watchlist.")
+    try{
+      //println("Here is your watchlist.")
+      val url = "jdbc:mysql://localhost:3306/project0"
+      val username = "root"
+      val password = "KafeAde!f1a"
+      val connection = DriverManager.getConnection(url, username, password)
+      val s = connection.createStatement()
+      var query: String = ""
+
+      //println("LIVE-ACTION DRAMA MOVIES:")
+      query = "SELECT * FROM watchList"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        val wId = resultSet.getInt("wID")
+        val wTitle = resultSet.getString("wTitle")
+        val addDate = resultSet.getString("addDate")
+        println(("wID = %s, Title = %s, Date Added = %s").format(wId, wTitle, addDate))
+      }
+    }
+    catch{
+      case
+        Exception => //e.printStackTrace()
+        println(
+          """
+            |You have not created a watchlist.
+            |Go back and browse the collection to
+            |start adding titles to your watchlist,
+            |OR create your watchlist now and fill it later.
+            |DO YOU WANT TO CREATE YOUR WATCHLIST?
+            |Enter a number to make a choice:
+            |1 for CREATE WATCHLIST NOW
+            |2 for GO BACK
+            |3 for QUIT APP
+            |""".stripMargin)
+        val x = readInt()
+        if (x==1){
+          watchList.createWatchList()
+        }
+        else if (x==2){
+          possibilities()
+        }
+        else{
+          System.exit(0)
+        }
+    }
+  }
+
+  def watchedListCheck(): Unit = {
+    try{
+      //println("Here is the list of titles you have watched already.")
+      val url = "jdbc:mysql://localhost:3306/project0"
+      val username = "root"
+      val password = "KafeAde!f1a"
+      val connection = DriverManager.getConnection(url, username, password)
+      val s = connection.createStatement()
+      var query: String = ""
+
+      query = "SELECT * FROM watchAgain"
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        val watchedId = resultSet.getInt("watchedID")
+        val watchedTitle = resultSet.getString("watchedTitle")
+        val wDate = resultSet.getString("wDate")
+        println(("wID = %s, Title = %s, Date Added = %s").format(watchedId, watchedTitle, wDate))
+      }
+    }
+    catch{
+      case Exception => //e.printStackTrace()
+        println(
+          """
+            |You have not watched anything yet.
+            |Go back and browse the collection to
+            |start watching right now.
+            |Enter a number to make a choice:
+            |1 for GO BACK
+            |2 for QUIT APP
+            |""".stripMargin)
+        val x = readInt()
+        if (x==1){
+          possibilities()
+        }
+        else{
+          System.exit(0)
+        }
+    }
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -1302,18 +1389,18 @@ object Project0_TryOne {
         |Enter a number to select a category:
         |1) View my watchlist
         |2) View my watched list
-        |3) Browse movie collection
-        |4) Login to user account
-        |5) Create user account
-        |6) Quit
+        |3) Browse the collection of titles.
+        |4) Quit
         |""".stripMargin)
     val choice = readInt()
     if (choice == 1) {
+      watchlistCheck()
+      watchList.viewWatchList()
       println("Here is your watchlist.")
       println(
         """
           |Would you like to go back?
-          |1 for YES. 2 for NO.
+          |1 for YES. 2 for QUIT APP.
           |""".stripMargin)
       val back = readInt()
       if (back == 1){
@@ -1325,11 +1412,12 @@ object Project0_TryOne {
 
     }
     else if (choice == 2){
-      println("Here is your watched list.")
+      watchedListCheck()
+      //println("Here is your watched list.")
       println(
         """
           |Would you like to go back?
-          |1 for YES. 2 for NO.
+          |1 for YES. 2 for QUIT APP.
           |""".stripMargin)
       val back = readInt()
       if (back == 1){
@@ -1342,7 +1430,7 @@ object Project0_TryOne {
     else if(choice == 3){
       movieOrShow()
     }
-    else if (choice == 6){
+    else if (choice == 4){
       //0
       System.exit(0)
     }
