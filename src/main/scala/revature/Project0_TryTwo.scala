@@ -532,6 +532,13 @@ object Project0_TryTwo {
 
   @tailrec
   def laShowGenrePicker(): Unit = {
+    val url = "jdbc:mysql://localhost:3306/project0"
+    val username = "root"
+    val password = "KafeAde!f1a"
+    val connection = DriverManager.getConnection(url, username, password)
+    val s = connection.createStatement()
+    var query: String = ""
+
     val choice = genrePicker()
     if (choice==1){
       println("Live-Action Drama Shows.")

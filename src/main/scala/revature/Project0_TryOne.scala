@@ -1,6 +1,7 @@
 package revature
 
 import java.sql.DriverManager
+import java.time.{LocalDate, Year}
 import scala.annotation.tailrec
 import scala.io.StdIn.readInt
 
@@ -38,24 +39,24 @@ object Project0_TryOne {
     val connection = DriverManager.getConnection(url, username, password)
     val s = connection.createStatement()
     var query: String = ""
+
     val choice = genrePicker()
     //If you pick Drama
     if (choice==1){
+      println("LIVE-ACTION DRAMA MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Drama'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
       while (resultSet.next) {
-        val movie_id = resultSet.getString("movie_id")
+        //val movie_id = resultSet.getString("movie_id")
         val mTitle = resultSet.getString("mTitle")
-        val mDirector = resultSet.getString("mDirector")
-        val mRuntimeMin = resultSet.getString("mRunTimeMin")
+        //val mDirector = resultSet.getString("mDirector")
+        //val mRuntimeMin = resultSet.getString("mRunTimeMin")
         val mYearReleased = resultSet.getString("mYearReleased")
-        val mGenre = resultSet.getString("mGenre")
+        //val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
-        val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        //val mLaStatus = resultSet.getString("mLaStatus")
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -73,6 +74,7 @@ object Project0_TryOne {
     }
     //If you pick Action
     else if(choice==2){
+      println("LIVE-ACTION ACTION MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Action'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -85,9 +87,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -105,6 +105,7 @@ object Project0_TryOne {
     }
     //If you pick Comedy
     else if(choice==3){
+      println("LIVE-ACTION COMEDY MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Comedy'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -117,9 +118,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -138,6 +137,7 @@ object Project0_TryOne {
 
     //If you picked Horror Movies
     else if(choice==4){
+      println("LIVE-ACTION HORROR MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Horror'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -150,9 +150,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -170,6 +168,7 @@ object Project0_TryOne {
     }
     //If you picked Sci-fi
     else if(choice==5){
+      println("LIVE-ACTION SCI-FI MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Sci-fi'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -182,9 +181,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -202,6 +199,7 @@ object Project0_TryOne {
     }
     //If you picked Thriller
     else if(choice==6){
+      println("LIVE-ACTION THRILLER MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Thriller'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -214,9 +212,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -234,6 +230,7 @@ object Project0_TryOne {
     }
       //If you pick Western
     else if(choice==7){
+      println("LIVE-ACTION WESTERN MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Western'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -246,9 +243,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -266,6 +261,7 @@ object Project0_TryOne {
     }
       //If you pick Romance
     else if(choice==8){
+      println("LIVE-ACTION ROMANCE MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Romance'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -278,9 +274,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -298,6 +292,7 @@ object Project0_TryOne {
     }
       //If you pick Adventure
     else if(choice==9){
+      println("LIVE-ACTION ADVENTURE MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Adventure'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -310,9 +305,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -330,6 +323,7 @@ object Project0_TryOne {
     }
       //If you pick Crime
     else if(choice==10){
+      println("LIVE-ACTION CRIME MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Crime'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -342,9 +336,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -362,6 +354,7 @@ object Project0_TryOne {
     }
       //If you pick Musical
     else if(choice==11){
+      println("LIVE-ACTION MUSICAL MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Musical'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -374,9 +367,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -394,6 +385,7 @@ object Project0_TryOne {
     }
       //If you pick Fantasy
     else if(choice==12){
+      println("LIVE-ACTION FANTASY MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Fantasy'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -406,9 +398,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -426,6 +416,7 @@ object Project0_TryOne {
     }
       //If you pick Biographical
     else if(choice==13){
+      println("LIVE-ACTION BIOGRAPHICAL MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 1 and mGenre = 'Biographical'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -438,9 +429,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -478,6 +467,7 @@ object Project0_TryOne {
 
     //If you chose Drama
     if (choice==1){
+      println("ANIMATED DRAMA MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Drama'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -490,9 +480,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -510,6 +498,7 @@ object Project0_TryOne {
     }
       //If you chose Action
     else if(choice==2){
+      println("ANIMATED ACTION MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Action'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -522,9 +511,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -542,6 +529,7 @@ object Project0_TryOne {
     }
       //If you chose Comedy
     else if(choice==3){
+      println("ANIMATED COMEDY MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Comedy'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -554,9 +542,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -574,6 +560,7 @@ object Project0_TryOne {
     }
       //If you chose Horror
     else if(choice==4){
+      println("ANIMATED HORROR MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Horror'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -586,9 +573,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -606,6 +591,7 @@ object Project0_TryOne {
     }
       //If you chose Sci-fi
     else if(choice==5){
+      println("ANIMATED SCI-FI MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Sci-fi'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -618,9 +604,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -638,6 +622,7 @@ object Project0_TryOne {
     }
       //If you chose Thriller
     else if(choice==6){
+      println("ANIMATED THRILLER MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Thriller'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -650,9 +635,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -670,6 +653,7 @@ object Project0_TryOne {
     }
       //If you chose Western
     else if(choice==7){
+      println("ANIMATED WESTERN MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Western'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -682,9 +666,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -702,6 +684,7 @@ object Project0_TryOne {
     }
       //If you chose Romance
     else if(choice==8){
+      println("ANIMATED ROMANCE MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Romance'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -714,9 +697,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -734,6 +715,7 @@ object Project0_TryOne {
     }
       //If you chose Adventure
     else if(choice==9){
+      println("ANIMATED ADVENTURE MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Adventure'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -746,9 +728,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -766,6 +746,7 @@ object Project0_TryOne {
     }
       //If you chose Crime
     else if(choice==10){
+      println("ANIMATED CRIME MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Crime'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -778,9 +759,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -798,6 +777,7 @@ object Project0_TryOne {
     }
       //If you chose Musical
     else if(choice==11){
+      println("ANIMATED MUSICAL MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Musical'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -810,9 +790,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -830,6 +808,7 @@ object Project0_TryOne {
     }
       //If you chose Fantasy
     else if(choice==12){
+      println("ANIMATED FANTASY MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Fantasy'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -842,9 +821,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -862,6 +839,7 @@ object Project0_TryOne {
     }
       //If you chose Biographical
     else if(choice==13){
+      println("ANIMATED BIOGRAPHICAL MOVIES:")
       query = "SELECT * FROM movie WHERE mLaStatus = 0 and mGenre = 'Biographical'"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
@@ -874,9 +852,7 @@ object Project0_TryOne {
         val mGenre = resultSet.getString("mGenre")
         val mRating = resultSet.getString("mRating")
         val mLaStatus = resultSet.getString("mLaStatus")
-        println(("Id = %s, Title = %s, Director = %s, Runtime (Min) = %s, Year Released = %s, " +
-          "Genre = %s, Rating = %s, Live-Action Status = %s").format(movie_id, mTitle, mDirector,
-          mRuntimeMin, mYearReleased, mGenre, mRating, mLaStatus))
+        println(("%s (%s) (%s)").format(mTitle, mYearReleased, mRating))
       }
       //This is outside of while loop
       println(
@@ -901,11 +877,54 @@ object Project0_TryOne {
     }
   }
 
+  //DEALING WITH THE SHOWS NOW:
   @tailrec
   def laShowGenrePicker(): Unit = {
+    val url = "jdbc:mysql://localhost:3306/project0"
+    val username = "root"
+    val password = "KafeAde!f1a"
+    val connection = DriverManager.getConnection(url, username, password)
+    val s = connection.createStatement()
+    var query: String = ""
+
     val choice = genrePicker()
+    //If you choose Drama Live Action Show:
     if (choice==1){
-      println("Live-Action Drama Shows.")
+      println("LIVE-ACTION DRAMA SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Drama'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -919,8 +938,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Action Show:
     else if(choice==2){
-      println("Live-Action Action Shows.")
+      println("LIVE-ACTION ACTION SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Action'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -934,8 +988,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Comedy Show:
     else if(choice==3){
-      println("Live-Action Comedy Shows.")
+      println("LIVE-ACTION COMEDY SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Comedy'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -949,8 +1038,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Horror Show:
     else if(choice==4){
-      println("Live-Action Horror Shows.")
+      println("LIVE-ACTION HORROR SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Horror'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -964,8 +1088,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Sci-fi Show:
     else if(choice==5){
-      println("Live-Action Sci-Fi Shows.")
+      println("LIVE-ACTION SCI-FI SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Sci-fi'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -979,8 +1138,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Thriller Show:
     else if(choice==6){
-      println("Live-Action Thriller Shows.")
+      println("LIVE-ACTION THRILLER SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Thriller'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -994,8 +1188,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Western Show:
     else if(choice==7){
-      println("Live-Action Western Shows.")
+      println("LIVE-ACTION WESTERN SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Western'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1009,8 +1238,42 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Romance Show:
     else if(choice==8){
-      println("Live-Action Romance Shows.")
+      println("LIVE-ACTION ROMANCE SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Romance'"
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1024,8 +1287,42 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Adventure Show:
     else if(choice==9){
-      println("Live-Action Adventure Shows.")
+      println("LIVE-ACTION ADVENTURE SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Adventure'"
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1039,8 +1336,42 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Crime Show:
     else if(choice==10){
-      println("Live-Action Crime Shows.")
+      println("LIVE-ACTION CRIME SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Crime'"
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1054,8 +1385,42 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Musical Shows:
     else if(choice==11){
-      println("Live-Action Musical Shows.")
+      println("LIVE-ACTION MUSICAL SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Musical'"
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1069,8 +1434,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Fantasy Shows:
     else if(choice==12){
-      println("Live-Action Fantasy Shows.")
+      println("LIVE-ACTION FANTASY SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Fantasy'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1084,8 +1484,44 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose LA Biographical Shows:
     else if(choice==13){
-      println("Live-Action Biopic Shows.")
+      println("LIVE-ACTION BIOGRAPHICAL SHOWS:")
+      println("Live-Action Biographical Shows.")
+      query = "SELECT * FROM series WHERE sLaStatus = 1 and sGenre = 'Biographical'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1110,9 +1546,51 @@ object Project0_TryOne {
 
   @tailrec
   def animatedShowGenrePicker(): Unit = {
+    val url = "jdbc:mysql://localhost:3306/project0"
+    val username = "root"
+    val password = "KafeAde!f1a"
+    val connection = DriverManager.getConnection(url, username, password)
+    val s = connection.createStatement()
+    var query: String = ""
+
     val choice = genrePicker()
+    //If you choose animated Drama Shows:
     if (choice==1){
-      println("Animated Drama Shows.")
+      println("ANIMATED DRAMA SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Drama'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1126,8 +1604,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated Action Shows:
     else if(choice==2){
-      println("Animated Action Shows.")
+      println("ANIMATED ACTION SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Action'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1141,8 +1654,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose Animated Comedy Shows:
     else if(choice==3){
-      println("Animated Comedy Shows.")
+      println("ANIMATED COMEDY SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Comedy'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1156,8 +1704,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose Animated Horror Shows:
     else if(choice==4){
-      println("Animated Horror Shows.")
+      println("ANIMATED HORROR SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Horror'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1171,8 +1754,44 @@ object Project0_TryOne {
         0
       }
     }
+
+      //If you choose animated Sci-fi shows:
     else if(choice==5){
-      println("Animated Sci-Fi Shows.")
+      println("ANIMATED SCI-FI SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Sci-fi'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1186,8 +1805,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose Animated Thriller Shows:
     else if(choice==6){
-      println("Animated Thriller Shows.")
+      println("ANIMATED THRILLER SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Thriller'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1201,8 +1855,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose Animated Western Shows:
     else if(choice==7){
-      println("Animated Western Shows.")
+      println("ANIMATED WESTERN SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Western'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1216,8 +1905,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated Romance shows:
     else if(choice==8){
-      println("Animated Romance Shows.")
+      println("ANIMATED ROMANCE SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Romance'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1231,8 +1955,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated Adventure Shows:
     else if(choice==9){
-      println("Animated Adventure Shows.")
+      println("ANIMATED ADVENTURE SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Adventure'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1246,8 +2005,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated crime shows:
     else if(choice==10){
-      println("Animated Crime Shows.")
+      println("ANIMATED CRIME SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Crime'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1261,8 +2055,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated Musical Shows:
     else if(choice==11){
-      println("Animated Musical Shows.")
+      println("ANIMATED MUSICAL SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Musical'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1276,8 +2105,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose animated Fantasy Shows:
     else if(choice==12){
-      println("Animated Fantasy Shows.")
+      println("ANIMATED FANTASY SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Fantasy'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
@@ -1291,8 +2155,43 @@ object Project0_TryOne {
         0
       }
     }
+      //If you choose Animated Biographical Shows
     else if(choice==13){
-      println("Animated Biopic Shows.")
+      println("ANIMATED BIOGRAPHICAL SHOWS:")
+      query = "SELECT * FROM series WHERE sLaStatus = 0 and sGenre = 'Biographical'"
+      //println("Live-Action Drama Movies.")
+      val resultSet = s.executeQuery(query)
+      while (resultSet.next) {
+        //val series_id = resultSet.getString("series_id")
+        val sTitle = resultSet.getString("sTitle")
+        //val sCreator = resultSet.getString("sCreator")
+        val numOfSeasons = resultSet.getString("numOfSeasons")
+        val sYearReleased = resultSet.getInt("sYearReleased")
+        val sYearFinished = resultSet.getInt("sYearFinished")
+        var unfinished = " "
+        if (sYearFinished == 0){
+          unfinished = "currently airing"
+        }
+        else{
+          val x = String.valueOf(sYearFinished)
+          unfinished = x
+        }
+        val cancelledStatus = resultSet.getInt("cancelledStatus")
+        var isCancelled = " "
+        if (cancelledStatus==1){
+          isCancelled = "(cancelled)"
+        }
+        else{
+          isCancelled = " "
+        }
+        val sGenre = resultSet.getString("sGenre")
+        val sRating = resultSet.getString("sRating")
+        val sLaStatus = resultSet.getString("sLaStatus")
+        println(("%s (%s) (%s - %s)\t\t" + " Number of Seasons = %s " +
+          "%s").format(sTitle, sRating, sYearReleased, unfinished,
+          numOfSeasons, isCancelled))
+      }
+      //This is outside of while loop
       println(
         """
           |Would you like to go back?
