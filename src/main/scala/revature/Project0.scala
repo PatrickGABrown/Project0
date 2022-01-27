@@ -64,7 +64,7 @@ import revature.AnimatedShows.AniBioShow._
 
 
 
-object Project0_TryOne {
+object Project0 {
   //This function prompts the user to choose a genre from a list of 13
   //Or go back to the previous screen.
   //The choice is sent to the function for choosing a movie and
@@ -1403,7 +1403,6 @@ object Project0_TryOne {
 
   //------------------------------------------------------------------------------------------------------------------
   //This function represents the home page of the app.
-  @tailrec
   def possibilities(): Unit = {
     println(
       """
@@ -1415,19 +1414,53 @@ object Project0_TryOne {
         |4) Quit
         |""".stripMargin)
     val choice = readInt()
-    if (choice == 1) {
-      watchlistCheck()
-      watchList.viewWatchList()
-      println("Here is your watchlist.")
-      println(
-        """
-          |Would you like to remove an item from your watch list?
-          |1 for YES. 2 for NO.
-          |""".stripMargin)
-      val cut = readInt()
-      if (cut == 1){
-        deleteFromWatchList()
-        println("Title deleted.")
+    try{
+      if (choice == 1) {
+        watchlistCheck()
+        watchList.viewWatchList()
+        println("Here is your watchlist.")
+        println(
+          """
+            |Would you like to remove an item from your watch list?
+            |1 for YES. 2 for NO.
+            |""".stripMargin)
+        val cut = readInt()
+        if (cut == 1){
+          deleteFromWatchList()
+          println("Title deleted.")
+          println(
+            """
+              |Would you like to go back?
+              |1 for YES. 2 for QUIT APP.
+              |""".stripMargin)
+          val back = readInt()
+          if (back == 1){
+            possibilities()
+          }
+          else{
+            System.exit(0)
+          }
+
+        }
+        else{
+          println(
+            """
+              |Would you like to go back?
+              |1 for YES. 2 for QUIT APP.
+              |""".stripMargin)
+          val back = readInt()
+          if (back == 1){
+            possibilities()
+          }
+          else{
+            System.exit(0)
+          }
+        }
+
+      }
+      else if (choice == 2){
+        watchedListCheck()
+        //println("Here is your watched list.")
         println(
           """
             |Would you like to go back?
@@ -1440,50 +1473,26 @@ object Project0_TryOne {
         else{
           System.exit(0)
         }
-
       }
-      else{
-        println(
-          """
-            |Would you like to go back?
-            |1 for YES. 2 for QUIT APP.
-            |""".stripMargin)
-        val back = readInt()
-        if (back == 1){
-          possibilities()
-        }
-        else{
-          System.exit(0)
-        }
+      else if(choice == 3){
+        movieOrShow()
       }
-
-    }
-    else if (choice == 2){
-      watchedListCheck()
-      //println("Here is your watched list.")
-      println(
-        """
-          |Would you like to go back?
-          |1 for YES. 2 for QUIT APP.
-          |""".stripMargin)
-      val back = readInt()
-      if (back == 1){
-        possibilities()
-      }
-      else{
+      else if (choice == 4){
+        //0
         System.exit(0)
       }
+      else{
+        println("Enter a valid number (1-3).")
+        possibilities()
+      }
     }
-    else if(choice == 3){
-      movieOrShow()
-    }
-    else if (choice == 4){
-      //0
-      System.exit(0)
-    }
-    else{
-      println("Enter a valid number (1-3).")
-      possibilities()
+    catch{
+      case e: NumberFormatException => //e.printStackTrace()
+        println(
+          """
+            |Enter a valid number.
+            |""".stripMargin)
+        possibilities()
     }
   }
 

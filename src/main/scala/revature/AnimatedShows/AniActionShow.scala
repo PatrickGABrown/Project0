@@ -2,7 +2,7 @@ package revature.AnimatedShows
 
 import java.sql.DriverManager
 import scala.io.StdIn.readInt
-import revature.Project0_TryOne.animatedShowGenrePicker
+import revature.Project0.animatedShowGenrePicker
 import revature.watchlist.watchList
 import revature.watchAgain._
 

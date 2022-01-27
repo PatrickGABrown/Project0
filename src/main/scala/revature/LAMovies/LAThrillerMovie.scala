@@ -2,7 +2,7 @@ package revature.LAMovies
 
 import java.sql.DriverManager
 import scala.io.StdIn.readInt
-import revature.Project0_TryOne.laMovieGenrePicker
+import revature.Project0.laMovieGenrePicker
 import revature.watchlist.watchList
 import revature.watchAgain._
 
