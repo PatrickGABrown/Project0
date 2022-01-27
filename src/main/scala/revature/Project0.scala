@@ -1,3 +1,11 @@
+//Patrick Brown
+//1/27/22
+//Project0
+//SCREEN SERVANT
+//This CLI app gives you options when you don't know what to watch.
+//You can add movies or shows you like to a watch list.
+//Movies you decide to watch are added to a watchAgain DB.
+
 package revature
 
 import revature.watchlist.watchList
