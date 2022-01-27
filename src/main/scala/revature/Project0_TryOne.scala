@@ -1290,6 +1290,8 @@ object Project0_TryOne {
 
   }
 
+  //------------------------------------------------------------------------------------------------------------------
+  //Functions for dealing with the watch list.
   def watchlistCheck(): Unit = {
     try{
       //println("Here is your watchlist.")
@@ -1304,16 +1306,18 @@ object Project0_TryOne {
       query = "SELECT * FROM watchList"
       //println("Live-Action Drama Movies.")
       val resultSet = s.executeQuery(query)
+      /*
       while (resultSet.next) {
         val wId = resultSet.getInt("wID")
         val wTitle = resultSet.getString("wTitle")
         val addDate = resultSet.getString("addDate")
         println(("wID = %s, Title = %s, Date Added = %s").format(wId, wTitle, addDate))
       }
+      */
     }
     catch{
       case
-        Exception => //e.printStackTrace()
+        e: Exception => //e.printStackTrace()
         println(
           """
             |You have not created a watchlist.
@@ -1339,6 +1343,24 @@ object Project0_TryOne {
     }
   }
 
+  def deleteFromWatchList(): Unit = {
+    println("Enter the id of the title you want to remove from the watch list.")
+    val use = readInt()
+    val url = "jdbc:mysql://localhost:3306/project0"
+    val username = "root"
+    val password = "KafeAde!f1a"
+    val connection = DriverManager.getConnection(url, username, password)
+    val s = connection.createStatement()
+    var delete: String = ""
+
+    delete = s"DELETE FROM watchList WHERE wID = $use"
+    s.executeUpdate(delete)
+
+  }
+
+
+  //------------------------------------------------------------------------------------------------------------------
+  //Functions for dealing with the watch again table.
   def watchedListCheck(): Unit = {
     try{
       //println("Here is the list of titles you have watched already.")
@@ -1359,7 +1381,7 @@ object Project0_TryOne {
       }
     }
     catch{
-      case Exception => //e.printStackTrace()
+      case e: Exception => //e.printStackTrace()
         println(
           """
             |You have not watched anything yet.
@@ -1399,15 +1421,40 @@ object Project0_TryOne {
       println("Here is your watchlist.")
       println(
         """
-          |Would you like to go back?
-          |1 for YES. 2 for QUIT APP.
+          |Would you like to remove an item from your watch list?
+          |1 for YES. 2 for NO.
           |""".stripMargin)
-      val back = readInt()
-      if (back == 1){
-        possibilities()
+      val cut = readInt()
+      if (cut == 1){
+        deleteFromWatchList()
+        println("Title deleted.")
+        println(
+          """
+            |Would you like to go back?
+            |1 for YES. 2 for QUIT APP.
+            |""".stripMargin)
+        val back = readInt()
+        if (back == 1){
+          possibilities()
+        }
+        else{
+          System.exit(0)
+        }
+
       }
       else{
-        System.exit(0)
+        println(
+          """
+            |Would you like to go back?
+            |1 for YES. 2 for QUIT APP.
+            |""".stripMargin)
+        val back = readInt()
+        if (back == 1){
+          possibilities()
+        }
+        else{
+          System.exit(0)
+        }
       }
 
     }
@@ -1440,6 +1487,8 @@ object Project0_TryOne {
     }
   }
 
+  //------------------------------------------------------------------------------------------------------------------
+  //This is the MAIN function:
   def main (args: Array[String]): Unit = {
     //Run the function that starts the Screen Servant app.
     possibilities()

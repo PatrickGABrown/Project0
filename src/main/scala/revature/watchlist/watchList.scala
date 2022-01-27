@@ -8,14 +8,14 @@ object watchList {
     val username = "root"
     val password = "KafeAde!f1a"
     val connection = DriverManager.getConnection(url, username, password)
-    val s = connection.createStatement()
+    val s2 = connection.createStatement()
     var create: String = ""
     var query: String = ""
 
     //create an empty watchList
     create = "CREATE TABLE watchList(wID int NOT NULL, " +
       "wTitle varchar(300), addDate date)"
-    s.executeUpdate(create)
+    s2.executeUpdate(create)
   }
 
   def viewWatchList(): Unit={
@@ -23,12 +23,12 @@ object watchList {
     val username = "root"
     val password = "KafeAde!f1a"
     val connection = DriverManager.getConnection(url, username, password)
-    val s = connection.createStatement()
+    val s1 = connection.createStatement()
     var query: String = ""
 
     //query to show the watchList table.
     query = "SELECT * FROM watchList"
-    val resultSet = s.executeQuery(query)
+    val resultSet = s1.executeQuery(query)
     while (resultSet.next){
       val wId = resultSet.getInt("wID")
       val wTitle = resultSet.getString("wTitle")
@@ -36,5 +36,7 @@ object watchList {
       println(("wID = %s, Title = %s, Date Added = %s").format(wId, wTitle, addDate))
       //println("You created the watchAgain table.")
     }
+
   }
+
 }

@@ -3,6 +3,8 @@ package revature.LAShows
 import java.sql.DriverManager
 import scala.io.StdIn.readInt
 import revature.Project0_TryOne.laShowGenrePicker
+import revature.watchlist.watchList
+import revature.watchAgain._
 
 object LAMusicalShow {
   //This function does the actual adding of the movie you choose to the watchlist
@@ -31,36 +33,87 @@ object LAMusicalShow {
           |""".stripMargin)
       val decide = readInt()
       if (decide == 1) {
-        println("The series has been added to your watchlist.")
-        //Go back to the other movies from the genre you chose.
-        println(
-          """
-            |Would you like to go back?
-            |1 for YES. 2 for NO.
-            |""".stripMargin)
-        val back = readInt()
-        if (back == 1) {
-          LAMusicalShowsButNotStuck(a)
+        try{
+          watchList.createWatchList()
         }
-        else {
-          System.exit(0)
+        catch{
+          case e: Exception => //e.printStackTrace()
+            val url = "jdbc:mysql://localhost:3306/project0"
+            val username = "root"
+            val password = "KafeAde!f1a"
+            val connection = DriverManager.getConnection(url, username, password)
+            val sb = connection.createStatement()
+            val sc = connection.createStatement()
+            //Get the data from the movie you chose.
+            val again = s"SELECT * from movie where movie_id = $yourLAShowSelection"
+            val resultAdd = sb.executeQuery(again)
+            while (resultAdd.next) {
+              var q = " "
+              val mTitle = resultAdd.getString("mTitle")
+              val movie_id = resultAdd.getString("movie_id")
+              val format = new java.text.SimpleDateFormat("yyyy-MM-dd")
+              val date = format.format(new java.util.Date())
+              q = s"insert into watchList VALUES($movie_id, '$mTitle', '$date')"
+              sc.executeUpdate(q)
+
+            }
+
+            println("The movie has been added to your watchlist.")
+            //Go back to the other movies from the genre you chose.
+            println(
+              """
+                |Would you like to go back?
+                |1 for YES. 2 for NO.
+                |""".stripMargin)
+            val back = readInt()
+            if (back == 1) {
+              LAMusicalShowsButNotStuck(a)
+            }
+            else {
+              System.exit(0)
+            }
         }
       }
       else if (decide == 2) {
-        println(s"You have watched the show.")
-        //Go back to the other movies from the genre you chose.
-        println(
-          """
-            |Would you like to go back?
-            |1 for YES. 2 for NO.
-            |""".stripMargin)
-        val back = readInt()
-        if (back == 1) {
-          LAMusicalShowsButNotStuck(a)
+        try{
+          watchAgainDB.createWatchedList()
         }
-        else {
-          //QUIT
-          System.exit(0)
+        catch{
+          case e: Exception => //e.printStackTrace()
+            val url = "jdbc:mysql://localhost:3306/project0"
+            val username = "root"
+            val password = "KafeAde!f1a"
+            val connection = DriverManager.getConnection(url, username, password)
+            val sb = connection.createStatement()
+            val sc = connection.createStatement()
+            //Get the data from the movie you chose.
+            val again = s"SELECT * from movie where movie_id = $yourLAShowSelection"
+            val resultAdd = sb.executeQuery(again)
+            while (resultAdd.next) {
+              var q = " "
+              val mTitle = resultAdd.getString("mTitle")
+              val movie_id = resultAdd.getString("movie_id")
+              val format = new java.text.SimpleDateFormat("yyyy-MM-dd")
+              val date = format.format(new java.util.Date())
+              q = s"insert into watchAgain VALUES($movie_id, '$mTitle', '$date')"
+              sc.executeUpdate(q)
+
+            }
+            println(s"You have watched the show.")
+            //Go back to the other shows from the genre you chose.
+            println(
+              """
+                |Would you like to go back?
+                |1 for YES. 2 for NO.
+                |""".stripMargin)
+            val back = readInt()
+            if (back == 1) {
+              LAMusicalShowsButNotStuck(a)
+            }
+            else {
+              //QUIT
+              System.exit(0)
+            }
         }
       }
       else if (decide == 3) {
