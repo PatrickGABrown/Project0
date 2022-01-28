@@ -74,7 +74,9 @@ object LABioMovie {
             }
         }
       }
+        //If you choose to watch the movie
       else if (decide == 2) {
+        //check if a watchedL
         try{
           watchAgainDB.createWatchedList()
         }
@@ -92,6 +94,9 @@ object LABioMovie {
             while (resultAdd.next) {
               var q = " "
               val mTitle = resultAdd.getString("mTitle")
+
+              //val regex = "('\\w+)|(\\w+'\\w+)|(\\w+')|(\\w+)"
+              //if (mTitle.contains("'")){
               val movie_id = resultAdd.getString("movie_id")
               val format = new java.text.SimpleDateFormat("yyyy-MM-dd")
               val date = format.format(new java.util.Date())

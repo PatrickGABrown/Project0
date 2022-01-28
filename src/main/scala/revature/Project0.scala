@@ -1322,6 +1322,9 @@ object Project0 {
         println(("wID = %s, Title = %s, Date Added = %s").format(wId, wTitle, addDate))
       }
       */
+      if (connection != null) {
+        connection.close()
+      }
     }
     catch{
       case
@@ -1349,6 +1352,7 @@ object Project0 {
           System.exit(0)
         }
     }
+
   }
 
   def deleteFromWatchList(): Unit = {
@@ -1359,10 +1363,32 @@ object Project0 {
     val password = "KafeAde!f1a"
     val connection = DriverManager.getConnection(url, username, password)
     val s = connection.createStatement()
-    var delete: String = ""
+    //var delete: String = ""
 
-    delete = s"DELETE FROM watchList WHERE wID = $use"
-    s.executeUpdate(delete)
+    try{
+      val delete = s"DELETE FROM watchList WHERE wID = $use"
+      s.executeUpdate(delete)
+    }
+    catch{
+      case e: Exception => //e.printStackTrace()
+        println(
+          """
+            |There are no titles in the watch list.
+            |Enter a number to make a choice:
+            |1 for GO BACK
+            |2 for QUIT APP
+            |""".stripMargin)
+        val x = readInt()
+        if (x==1){
+          possibilities()
+        }
+        else{
+          System.exit(0)
+        }
+    }
+    if (connection != null) {
+      connection.close()
+    }
 
   }
 
@@ -1370,15 +1396,14 @@ object Project0 {
   //------------------------------------------------------------------------------------------------------------------
   //Functions for dealing with the watch again table.
   def watchedListCheck(): Unit = {
+    //println("Here is the list of titles you have watched already.")
+    val url = "jdbc:mysql://localhost:3306/project0"
+    val username = "root"
+    val password = "KafeAde!f1a"
+    val connection = DriverManager.getConnection(url, username, password)
+    val s = connection.createStatement()
+    var query: String = ""
     try{
-      //println("Here is the list of titles you have watched already.")
-      val url = "jdbc:mysql://localhost:3306/project0"
-      val username = "root"
-      val password = "KafeAde!f1a"
-      val connection = DriverManager.getConnection(url, username, password)
-      val s = connection.createStatement()
-      var query: String = ""
-
       query = "SELECT * FROM watchAgain"
       val resultSet = s.executeQuery(query)
       while (resultSet.next) {
@@ -1407,6 +1432,9 @@ object Project0 {
           System.exit(0)
         }
     }
+    if (connection != null) {
+      connection.close()
+    }
   }
 
   //------------------------------------------------------------------------------------------------------------------
@@ -1423,10 +1451,11 @@ object Project0 {
         |""".stripMargin)
     val choice = readInt()
     try{
+      //If you want to view your watch list
       if (choice == 1) {
         watchlistCheck()
         watchList.viewWatchList()
-        println("Here is your watchlist.")
+        println("Your watchlist exists.")
         println(
           """
             |Would you like to remove an item from your watch list?
@@ -1434,21 +1463,38 @@ object Project0 {
             |""".stripMargin)
         val cut = readInt()
         if (cut == 1){
-          deleteFromWatchList()
-          println("Title deleted.")
-          println(
-            """
-              |Would you like to go back?
-              |1 for YES. 2 for QUIT APP.
-              |""".stripMargin)
-          val back = readInt()
-          if (back == 1){
-            possibilities()
+          try{
+            deleteFromWatchList()
+            println("Title deleted.")
+            println(
+              """
+                |Would you like to go back?
+                |1 for YES. 2 for QUIT APP.
+                |""".stripMargin)
+            val back = readInt()
+            if (back == 1){
+              possibilities()
+            }
+            else{
+              System.exit(0)
+            }
           }
-          else{
-            System.exit(0)
+          catch {
+            case e: Exception => //e.printStackTrace()
+              println("There are no titles to delete.")
+              println(
+                """
+                  |Would you like to go back?
+                  |1 for YES. 2 for QUIT APP.
+                  |""".stripMargin)
+              val back = readInt()
+              if (back == 1) {
+                possibilities()
+              }
+              else {
+                System.exit(0)
+              }
           }
-
         }
         else{
           println(
@@ -1466,9 +1512,10 @@ object Project0 {
         }
 
       }
+        //If you want to see titles you have already watched.
       else if (choice == 2){
         watchedListCheck()
-        //println("Here is your watched list.")
+        println("Your watched list exists.")
         println(
           """
             |Would you like to go back?
